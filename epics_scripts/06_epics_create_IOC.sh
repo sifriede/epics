@@ -11,7 +11,7 @@ make -C $EPICS_HOME/$EPICS_IOCNAME"ioc"
 ##=====Implement modules at compile time =====
 sed -i "/# Include dbd files from all support applications:/a "$EPICS_IOCNAME"_DBD += asyn.dbd stream.dbd drvAsynIPPort.dbd drvAsynSerialPort.dbd" $EPICS_IOCNAME"App"/src/Makefile
 sed -i "/# Add all the support libraries needed by this IOC/a "$EPICS_IOCNAME"_LIBS += stream \n"$EPICS_IOCNAME"_LIBS += asyn" $EPICS_IOCNAME"App"/src/Makefile
-sed -i "/EPICS_BASE =.*/a ASYN=$EPICS_HOME/asyn\nSTREAM=$EPICS_EXTENSIONS/StreamDevice\nEPICS_EXTENSION=$EPICS_EXTENSIONS\n#Benötigt,damit stream.dbd gefunden wird" configure/RELEASE
+sed -i "/EPICS_BASE*=.*/a ASYN=$EPICS_HOME/asyn\nSTREAM=$EPICS_EXTENSIONS/StreamDevice\nEPICS_EXTENSION=$EPICS_EXTENSIONS\n#Benötigt,damit stream.dbd gefunden wird" configure/RELEASE
 make -C $EPICS_HOME/$EPICS_IOCNAME"ioc"
 cd $EPICS_HOME
 

@@ -25,8 +25,9 @@ printf "epicsEnvSet(\"STREAM\",\""$EPICS_EXTENSIONS"/StreamDevice\")\n" >> $EPIC
 printf "epicsEnvSet(\"EPICS_EXTENSION\",\""$EPICS_EXTENSIONS"\")" >> $EPICS_HOME/$EPICS_IOCNAME"ioc"/iocBoot/ioc$EPICS_IOCNAME/envPaths
 
 ##===Write STREAM_PROTOCOL_PATH variable in st.cmd  ===
-MYTEXT='epicsEnvSet ("STREAM_PROTOCOL_PATH", ".:../../protocols")'
+MYTEXT='epicsEnvSet ("STREAM_PROTOCOL_PATH", ".:../../db")'
 sed -i "/cd \"\${TOP}\"/a $MYTEXT" $EPICS_HOME/$EPICS_IOCNAME"ioc"/iocBoot/ioc$EPICS_IOCNAME/st.cmd
+echo 'dbl > /home/epics/dbl_latest.lst' >> $EPICS_HOME/$EPICS_IOCNAME"ioc"/iocBoot/ioc$EPICS_IOCNAME/st.cmd
 
 ##=== add absolute Path to envPaths in st.cmd ===
 sed -ie "s@< envPaths@< $EPICS_HOME\/${EPICS_IOCNAME}ioc\/iocBoot\/ioc$EPICS_IOCNAME\/envPaths@g" $EPICS_HOME/$EPICS_IOCNAME"ioc"/iocBoot/ioc$EPICS_IOCNAME/st.cmd
